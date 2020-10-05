@@ -1,9 +1,6 @@
+import { graphql } from 'gatsby';
 import React from 'react';
-import Layout from '../components/Layout';
 
-<<<<<<< Updated upstream
-const PizzasPage = () => <h1>Pizzas</h1>;
-=======
 import PizzaList from '../components/PizzaList';
 import ToppingsFilter from '../components/ToppingsFilter';
 
@@ -15,6 +12,7 @@ const PizzasPage = ({ data }) => {
       <PizzaList pizzas={pizzas} />
     </>
   );
+
 };
 
 export const query = graphql`
@@ -44,6 +42,5 @@ export const query = graphql`
     }
   }
 `;
->>>>>>> Stashed changes
 
 export default PizzasPage;
