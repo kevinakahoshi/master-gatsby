@@ -29,7 +29,7 @@ const PizzaStyles = styled.div`
 
 const SinglePizza = ({ pizza }) => (
   <PizzaStyles>
-    <Link to={`/pizza/${pizza.slug.current}`}>
+    <Link to={`/pizzas/${pizza.slug.current}`}>
       <h2>
         <span className="mark">{pizza.name}</span>
       </h2>
