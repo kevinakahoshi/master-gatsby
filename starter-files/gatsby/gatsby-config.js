@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 
-dotenv.config({ path: 'variables.env' });
+dotenv.config({ path: '.env' });
 
 export default {
   siteMetadata: {

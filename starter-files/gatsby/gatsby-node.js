@@ -1,5 +1,10 @@
 import path from 'path';
 import fetch from 'isomorphic-fetch';
+import dotenv from 'dotenv';
+
+dotenv.config({
+  path: '.env',
+});
 
 const turnPizzasIntoPages = async ({ graphql, actions }) => {
   const pizzaTemplate = path.resolve('./src/templates/SinglePizzaPage.jsx');
@@ -84,6 +89,45 @@ const fetchBeersAndTurnIntoNodes = async ({
   }
 };
 
+const turnSliceMastersIntoPages = async ({ graphql, actions }) => {
+  // 1. Query all slicemasters
+  // 2. Turn slicemasters into their own page
+  // 3. Figure out how many pages there are based on how many slicemasters there are, and how many per page
+  // 4. Loop from 1 to n and create a page for each slicemaster
+
+  const { data } = await graphql(`
+    query {
+      sliceMasters: allSanityPerson {
+        totalCount
+        nodes {
+          name
+          id
+          slug {
+            current
+          }
+        }
+      }
+    }
+  `);
+
+  const pageSize = parseInt(process.env.GATSBY_PAGE_SIZE);
+  const pageCount = Math.ceil(data.sliceMasters.totalCount / pageSize);
+
+  Array.from({ length: pageCount }, (element, index) =>
+    actions.createPage({
+      path: `/slice-masters/${index + 1}`,
+      component: path.resolve('./src/pages/slice-masters.jsx'),
+      context: {
+        // When querying we need to know which elements to skip over, so if you're on page 1,
+        // you don't skip anything.  If you're on page 2, you skip over the first four (1 * 4), etc.
+        skip: index * pageSize,
+        currentPage: index + 1,
+        pageSize,
+      },
+    })
+  );
+};
+
 export const sourceNodes = async (params) => {
   // Fetch list of beers and source them into our Gatsby API
   await fetchBeersAndTurnIntoNodes(params);
@@ -93,5 +137,6 @@ export const createPages = async (params) => {
   await Promise.all([
     turnPizzasIntoPages(params),
     turnToppingsIntoPages(params),
+    turnSliceMastersIntoPages(params),
   ]);
 };
