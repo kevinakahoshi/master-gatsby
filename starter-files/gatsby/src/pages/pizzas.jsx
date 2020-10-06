@@ -2,17 +2,8 @@ import { graphql } from 'gatsby';
 import React from 'react';
 
 import PizzaList from '../components/PizzaList';
+import SEO from '../components/SEO';
 import ToppingsFilter from '../components/ToppingsFilter';
-
-const PizzasPage = ({ data }) => {
-  const pizzas = data.pizzas.nodes;
-  return (
-    <>
-      <ToppingsFilter />
-      <PizzaList pizzas={pizzas} />
-    </>
-  );
-};
 
 export const query = graphql`
   query PizzaQuery($toppingRegex: String) {
@@ -43,5 +34,22 @@ export const query = graphql`
     }
   }
 `;
+
+const PizzasPage = ({ data, pageContext }) => {
+  const pizzas = data.pizzas.nodes;
+  return (
+    <>
+      <SEO
+        title={
+          pageContext.topping
+            ? `Pizzas with ${pageContext.topping}`
+            : 'All Pizzas'
+        }
+      />
+      <ToppingsFilter />
+      <PizzaList pizzas={pizzas} />
+    </>
+  );
+};
 
 export default PizzasPage;
