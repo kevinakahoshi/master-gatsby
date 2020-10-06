@@ -66,8 +66,6 @@ export const query = graphql`
 const SliceMastersPage = ({ data, pageContext }) => {
   const sliceMasters = data.sliceMasters.nodes;
 
-  console.log(sliceMasters);
-
   return (
     <>
       <Pagination
