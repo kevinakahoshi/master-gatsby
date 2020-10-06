@@ -1,6 +1,7 @@
 import { graphql } from 'gatsby';
 import React from 'react';
 import styled from 'styled-components';
+import SEO from '../components/SEO';
 
 export const query = graphql`
   query {
@@ -49,6 +50,7 @@ const BeerPage = ({ data }) => {
 
   return (
     <>
+      <SEO title={`Beers!  We have ${beers.nodes.length} in stock`} />
       <h2 className="center">
         We have {beers.nodes.length} beers available. Dine in only!
       </h2>
