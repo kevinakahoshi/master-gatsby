@@ -7,7 +7,7 @@ import Pagination from '../components/Pagination';
 const SliceMasterGrid = styled.div`
   display: grid;
   grid-gap: 2rem;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 `;
 
 const SliceMasterStyles = styled.div`
@@ -16,7 +16,7 @@ const SliceMasterStyles = styled.div`
   }
 
   .gatsby-image-wrapper {
-    height: 400px;
+    height: 450px;
   }
 
   h2 {
@@ -41,7 +41,7 @@ const SliceMasterStyles = styled.div`
 `;
 
 export const query = graphql`
-  query($skip: Int = 0, $pageSize: Int = 3) {
+  query($skip: Int = 0, $pageSize: Int = 2) {
     sliceMasters: allSanityPerson(limit: $pageSize, skip: $skip) {
       totalCount
       nodes {
@@ -65,6 +65,8 @@ export const query = graphql`
 
 const SliceMastersPage = ({ data, pageContext }) => {
   const sliceMasters = data.sliceMasters.nodes;
+
+  console.log(sliceMasters);
 
   return (
     <>
