@@ -23,6 +23,7 @@ const BeerStyles = styled.div`
   display: grid;
   gap: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  margin-top: 2rem;
 `;
 
 const SingleBeerStyles = styled.div`
