@@ -7,6 +7,8 @@ import calculatePizzaPrice from '../utils/calculatePizzaPrice';
 import formatMoney from '../utils/formatMoney';
 import OrderStyles from '../styles/OrderStyles';
 import MenuItemStyles from '../styles/MenuItemStyles';
+import usePizza from '../utils/usePizza';
+import PizzaOrder from '../components/PizzaOrder';
 
 export const query = graphql`
   query {
@@ -31,12 +33,17 @@ export const query = graphql`
 `;
 
 const OrderPage = ({ data }) => {
+  const pizzas = data.pizzas.nodes;
+
   const { values, updateValue } = useForm({
     name: '',
     email: '',
   });
 
-  const pizzas = data.pizzas.nodes;
+  const { order, addToOrder, removeFromOrder } = usePizza({
+    pizzas,
+    inputs: values,
+  });
 
   return (
     <>
@@ -76,7 +83,16 @@ const OrderPage = ({ data }) => {
                 </div>
                 <div>
                   {['S', 'M', 'L'].map((size) => (
-                    <button key={size} type="button">
+                    <button
+                      key={size}
+                      type="button"
+                      onClick={() =>
+                        addToOrder({
+                          id: pizza.id,
+                          size,
+                        })
+                      }
+                    >
                       {size}{' '}
                       {formatMoney(calculatePizzaPrice(pizza.price, size))}
                     </button>
@@ -88,6 +104,11 @@ const OrderPage = ({ data }) => {
         </fieldset>
         <fieldset className="order">
           <legend>Order</legend>
+          <PizzaOrder
+            order={order}
+            removeFromOrder={removeFromOrder}
+            pizzas={pizzas}
+          />
         </fieldset>
       </OrderStyles>
     </>
