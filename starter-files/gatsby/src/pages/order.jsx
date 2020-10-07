@@ -4,6 +4,7 @@ import Img from 'gatsby-image';
 import SEO from '../components/SEO';
 import useForm from '../utils/useForm';
 import calculatePizzaPrice from '../utils/calculatePizzaPrice';
+import calculateOrderTotal from '../utils/calculateOrderTotal';
 import formatMoney from '../utils/formatMoney';
 import OrderStyles from '../styles/OrderStyles';
 import MenuItemStyles from '../styles/MenuItemStyles';
@@ -109,6 +110,12 @@ const OrderPage = ({ data }) => {
             removeFromOrder={removeFromOrder}
             pizzas={pizzas}
           />
+        </fieldset>
+        <fieldset className="total">
+          <h3>
+            Your Order Total is{' '}
+            {formatMoney(calculateOrderTotal(order, pizzas))}
+          </h3>
         </fieldset>
       </OrderStyles>
     </>
