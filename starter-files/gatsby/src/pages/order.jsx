@@ -5,6 +5,8 @@ import SEO from '../components/SEO';
 import useForm from '../utils/useForm';
 import calculatePizzaPrice from '../utils/calculatePizzaPrice';
 import formatMoney from '../utils/formatMoney';
+import OrderStyles from '../styles/OrderStyles';
+import MenuItemStyles from '../styles/MenuItemStyles';
 
 export const query = graphql`
   query {
@@ -39,7 +41,7 @@ const OrderPage = ({ data }) => {
   return (
     <>
       <SEO title="Order a pizza!" />
-      <form>
+      <OrderStyles>
         <fieldset>
           <legend>Your Info</legend>
           <label htmlFor="name">
@@ -63,28 +65,31 @@ const OrderPage = ({ data }) => {
             />
           </label>
         </fieldset>
-        <fieldset>
+        <fieldset className="menu">
           <legend>Menu</legend>
-          {pizzas.map((pizza) => (
-            <div key={pizza.id}>
-              <Img width="50" height="50" fluid={pizza.image.asset.fluid} />
-              <div key={pizza.id}>
-                <h2>{pizza.name}</h2>
-              </div>
-              <div>
-                {['S', 'M', 'L'].map((size) => (
-                  <button key={size} type="button">
-                    {size} {formatMoney(calculatePizzaPrice(pizza.price, size))}
-                  </button>
-                ))}
-              </div>
-            </div>
-          ))}
+          <div className="pizza-wrapper">
+            {pizzas.map((pizza) => (
+              <MenuItemStyles key={pizza.id}>
+                <Img width="50" height="50" fluid={pizza.image.asset.fluid} />
+                <div key={pizza.id}>
+                  <h2>{pizza.name}</h2>
+                </div>
+                <div>
+                  {['S', 'M', 'L'].map((size) => (
+                    <button key={size} type="button">
+                      {size}{' '}
+                      {formatMoney(calculatePizzaPrice(pizza.price, size))}
+                    </button>
+                  ))}
+                </div>
+              </MenuItemStyles>
+            ))}
+          </div>
         </fieldset>
-        <fieldset>
+        <fieldset className="order">
           <legend>Order</legend>
         </fieldset>
-      </form>
+      </OrderStyles>
     </>
   );
 };
