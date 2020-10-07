@@ -25,8 +25,6 @@ const OrderStyles = styled.form`
     .pizza-wrapper {
       display: grid;
       grid-gap: 1rem;
-      max-height: 560px;
-      overflow: auto;
     }
 
     &.menu,
