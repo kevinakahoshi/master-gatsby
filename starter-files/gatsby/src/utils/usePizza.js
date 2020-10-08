@@ -22,7 +22,7 @@ const usePizza = ({ pizzas, values }) => {
     event.preventDefault();
     setLoading(true);
     setError(null);
-    setMessage('asdfadsf');
+    setMessage(null);
 
     const body = {
       order: attachNamesAndPrices(order, pizzas),
