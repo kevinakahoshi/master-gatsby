@@ -33,6 +33,11 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+const wait = async (ms = 0) =>
+  new Promise((resolve, reject) => {
+    setTimeout(resolve, ms);
+  });
+
 exports.handler = async (event, context) => {
   const body = JSON.parse(event.body);
   const requiredFields = ['name', 'email', 'order'];
@@ -40,7 +45,11 @@ exports.handler = async (event, context) => {
 
   for (const field of requiredFields) {
     if (!body[field].length) {
-      missingFields.push(field);
+      if (field === 'order') {
+        missingFields.push('you have not ordered any pizzas');
+      } else {
+        missingFields.push(field);
+      }
     }
   }
 
@@ -56,9 +65,7 @@ exports.handler = async (event, context) => {
     return {
       statusCode: 400,
       body: JSON.stringify({
-        message: `Oops!  You are missing the ${combinedFields} field${
-          missingFields.length > 1 ? 's' : ''
-        }.`,
+        message: `Oops!  You are missing your ${combinedFields}.`,
       }),
     };
   }
