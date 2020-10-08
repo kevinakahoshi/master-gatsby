@@ -17,14 +17,18 @@ const OrderStyles = styled.form`
       display: grid;
       grid-gap: 1rem;
 
-      &:not(:last-child) {
-        margin-bottom: 1rem;
+      &:not([for="name"]) {
+        margin-top: 1rem;
       }
     }
 
     .pizza-wrapper {
       display: grid;
       grid-gap: 1rem;
+    }
+
+    .maple-syrup {
+      display: none;
     }
 
     &.menu,

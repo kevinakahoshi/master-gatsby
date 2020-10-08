@@ -40,6 +40,14 @@ const wait = async (ms = 0) =>
 
 exports.handler = async (event, context) => {
   const body = JSON.parse(event.body);
+
+  if (body.mapleSyrup) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ message: 'BOOM BEEP BOP ZZZZZT GOODBYE' }),
+    };
+  }
+
   const requiredFields = ['name', 'email', 'order'];
   const missingFields = [];
 
