@@ -17,7 +17,7 @@ exports.handler = async (event, context) => {
     subject: 'New Order',
     html: `<p>Your new pizza order is here!</p>`,
   });
-  console.log(info);
+
   return {
     statusCode: 200,
     body: JSON.stringify(info),
