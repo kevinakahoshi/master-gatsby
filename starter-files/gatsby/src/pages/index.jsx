@@ -2,6 +2,7 @@ import React from 'react';
 import CurrentlySlicing from '../components/CurrentlySlicing';
 import HotSlices from '../components/HotSlices';
 import SEO from '../components/SEO';
+import { HomePageGrid } from '../styles/Grids';
 import useLatestData from '../utils/useLatestData';
 
 const HomePage = () => {
@@ -14,10 +15,10 @@ const HomePage = () => {
       <div className="center">
         <h1>The Best Pizza Downtown!</h1>
         <p>Open 11:00AM - 11:00PM every single day!</p>
-        <div>
+        <HomePageGrid>
           <CurrentlySlicing sliceMasters={sliceMasters} />
           <HotSlices hotSlices={hotSlices} />
-        </div>
+        </HomePageGrid>
       </div>
     </>
   );

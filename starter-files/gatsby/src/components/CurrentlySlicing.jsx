@@ -1,12 +1,12 @@
 import React from 'react';
+import LoadingGrid from './LoadingGrid';
 
 const CurrentlySlicing = ({ sliceMasters }) => (
   <div>
-    <h3>Currently Slicing</h3>
-    {sliceMasters &&
-      sliceMasters.map((sliceMaster) => (
-        <p key={sliceMaster.name}>{sliceMaster.name}</p>
-      ))}
+    {!sliceMasters && <LoadingGrid count={4} />}
+    {sliceMasters && !sliceMasters?.length && (
+      <p>No one is working right now!</p>
+    )}
   </div>
 );
 
