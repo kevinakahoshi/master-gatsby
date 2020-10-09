@@ -8,7 +8,7 @@ import useLatestData from '../utils/useLatestData';
 const HomePage = () => {
   const data = useLatestData();
   const { sliceMasters, hotSlices } = data;
-
+  console.log(data);
   return (
     <>
       <SEO title="Hot Now!" />
