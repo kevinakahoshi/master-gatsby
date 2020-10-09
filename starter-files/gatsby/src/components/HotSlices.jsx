@@ -1,10 +1,10 @@
 import React from 'react';
+import LoadingGrid from './LoadingGrid';
 
 const HotSlices = ({ hotSlices }) => (
   <div>
-    <h3>Hot Slices</h3>
-    {hotSlices &&
-      hotSlices.map((slice) => <p key={slice.name}>{slice.name}</p>)}
+    {!hotSlices && <LoadingGrid count={4} />}
+    {hotSlices && !hotSlices?.length && <p>We got nothing in the case!</p>}
   </div>
 );
 
