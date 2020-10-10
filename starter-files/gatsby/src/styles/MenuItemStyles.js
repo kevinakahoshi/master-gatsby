@@ -2,12 +2,19 @@ import styled from 'styled-components';
 
 const MenuItemStyles = styled.div`
   display: grid;
-  grid-template-columns: 100px 1fr;
   grid-template-rows: 1fr 1fr;
   grid-gap: 0 1.3rem;
   align-content: center;
   align-items: center;
   position: relative;
+
+  @media (min-width: 601px) {
+    grid-template-columns: 100px 1fr;
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
 
   .gatsby-image-wrapper {
     grid-row: span 2;
@@ -22,8 +29,17 @@ const MenuItemStyles = styled.div`
     font-size: 1.5rem;
   }
 
-  button + button {
-    margin-left: 1rem;
+  & .size-button-wrapper {
+    display: grid;
+    grid-gap: 1rem;
+
+    @media (min-width: 601px) {
+      grid-template-columns: auto auto auto;
+    }
+
+    @media (max-width: 600px) {
+      grid-template-rows: auto auto auto;
+    }
   }
 
   .remove {

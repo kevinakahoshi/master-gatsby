@@ -24,7 +24,15 @@ const OrderStyles = styled.form`
 
     .pizza-wrapper {
       display: grid;
-      grid-gap: 1rem;
+      grid-gap: var(--pizza-gap);
+
+      @media (min-width: 601px) {
+        --pizza-gap: 1rem;
+      }
+
+      @media (max-width: 600px) {
+        --pizza-gap: 3rem;
+      }
     }
 
     .maple-syrup {

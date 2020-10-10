@@ -7,8 +7,15 @@ import SEO from '../components/SEO';
 const PizzaGrid = styled.div`
   display: grid;
   grid-gap: 2rem;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  margin-bottom: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(var(--min-width), 1fr));
+
+  @media (min-width: 601px) {
+    --min-width: 400px;
+  }
+
+  @media (max-width: 600px) {
+    --min-width: 200px;
+  }
 `;
 
 export const query = graphql`

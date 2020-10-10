@@ -3,7 +3,15 @@ const { default: styled } = require('styled-components');
 export const HomePageGrid = styled.div`
   display: grid;
   gap: 2rem;
-  grid-template-columns: repeat(2, minmax(auto, 1fr));
+  grid-template-columns: repeat(var(--columns), minmax(auto, 1fr));
+
+  @media (min-width: 801px) {
+    --columns: 2;
+  }
+
+  @media (max-width: 800px) {
+    --columns: 1;
+  }
 `;
 
 export const ItemsGrid = styled.div`

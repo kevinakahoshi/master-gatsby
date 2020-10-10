@@ -16,10 +16,33 @@ const NavStyles = styled.nav`
     display: grid;
     text-align: center;
     list-style: none;
-    grid-template-columns: 1fr 1fr auto 1fr 1fr;
     grid-gap: 2rem;
     align-items: center;
     margin-top: -6rem;
+
+    @media (min-width: 601px) {
+      grid-template-columns: 1fr 1fr auto 1fr 1fr;
+    }
+
+    @media (max-width: 600px) {
+      --columns: 4;
+      grid-template-rows: auto auto;
+      grid-template-columns: repeat(var(--columns), 1fr);
+      justify-items: center;
+
+      & .logo-item {
+        order: 0;
+        grid-column: 1 / -1;
+
+        & .logo {
+          transform: none;
+        }
+      }
+    }
+
+    @media (max-width: 400px) {
+      --columns: 2;
+    }
   }
 
   li {
@@ -55,6 +78,10 @@ const NavStyles = styled.nav`
       &[aria-current='page'] {
         color: var(--red);
       }
+
+      @media (max-width: 800px) {
+        font-size: 2rem;
+      }
     }
   }
 `;
@@ -68,7 +95,7 @@ const Nav = () => (
       <li>
         <Link to="/pizzas">Pizza Menu</Link>
       </li>
-      <li>
+      <li className="logo-item">
         <Link to="/">
           <Logo />
         </Link>
