@@ -7,8 +7,16 @@ import SEO from '../components/SEO';
 
 const SliceMasterGrid = styled.div`
   display: grid;
-  grid-gap: 2rem;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(var(--min-width), 1fr));
+  grid-gap: 4rem;
+
+  @media (min-width: 601px) {
+    --min-width: 350px;
+  }
+
+  @media (max-width: 600px) {
+    --min-width: 250px;
+  }
 `;
 
 const SliceMasterStyles = styled.div`
@@ -74,7 +82,6 @@ const SliceMastersPage = ({ data, pageContext }) => {
         pageSize={parseInt(process.env.GATSBY_PAGE_SIZE)}
         totalCount={data.sliceMasters.totalCount}
         currentPage={pageContext.currentPage || 1}
-        skip={pageContext.skip}
         base="slice-masters"
       />
       <SliceMasterGrid>

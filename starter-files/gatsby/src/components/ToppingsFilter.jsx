@@ -5,7 +5,6 @@ import styled from 'styled-components';
 const ToppingsStyles = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
   margin-bottom: 4rem;
 
   a {
@@ -17,6 +16,7 @@ const ToppingsStyles = styled.div`
     background: var(--grey);
     padding: 0.5rem;
     font-size: 2rem;
+    margin: 0.5rem;
     font-size: clamp(1.5rem, 1vw, 2.5rem);
 
     .count {
