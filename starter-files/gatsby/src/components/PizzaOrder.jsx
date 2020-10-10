@@ -11,12 +11,6 @@ const PizzaOrder = ({ order, pizzas, removeFromOrder }) => (
 
       return (
         <MenuItemStyles key={`${singleOrder.id}-${index}`}>
-          <Img fluid={pizza.image.asset.fluid} />
-          <h2>{pizza.name}</h2>
-          <p>
-            {singleOrder.size}{' '}
-            {formatMoney(calculatePizzaPrice(pizza.price, singleOrder.size))}
-          </p>
           <button
             type="button"
             className="remove"
@@ -25,6 +19,12 @@ const PizzaOrder = ({ order, pizzas, removeFromOrder }) => (
           >
             &times;
           </button>
+          <Img fluid={pizza.image.asset.fluid} />
+          <h2>{pizza.name}</h2>
+          <p>
+            {singleOrder.size}{' '}
+            {formatMoney(calculatePizzaPrice(pizza.price, singleOrder.size))}
+          </p>
         </MenuItemStyles>
       );
     })}
