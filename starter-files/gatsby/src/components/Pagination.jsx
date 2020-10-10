@@ -27,6 +27,12 @@ const PaginationStyles = styled.div`
       color: var(--grey);
     }
   }
+
+  @media (max-width: 800px) {
+    .arrow-indicator {
+      display: none;
+    }
+  }
 `;
 
 const Pagination = ({ pageSize, totalCount, currentPage, skip, base }) => {
@@ -39,7 +45,7 @@ const Pagination = ({ pageSize, totalCount, currentPage, skip, base }) => {
   return (
     <PaginationStyles>
       <Link disabled={!hasPrevPage} to={`/${base}/${prevPage}`}>
-        &#8592; Prev
+        &#8592;<span className="arrow-indicator"> Prev</span>
       </Link>
       {Array.from({ length: totalPages }, (element, index) => (
         <Link
@@ -51,7 +57,7 @@ const Pagination = ({ pageSize, totalCount, currentPage, skip, base }) => {
         </Link>
       ))}
       <Link disabled={!hasNextPage} to={`/${base}/${nextPage}`}>
-        Next &#8594;
+        <span className="arrow-indicator">Next </span>&#8594;
       </Link>
     </PaginationStyles>
   );

@@ -103,7 +103,7 @@ const OrderPage = ({ data }) => {
                 <div key={pizza.id}>
                   <h2>{pizza.name}</h2>
                 </div>
-                <div>
+                <div className="size-button-wrapper">
                   {['S', 'M', 'L'].map((size) => (
                     <button
                       key={size}

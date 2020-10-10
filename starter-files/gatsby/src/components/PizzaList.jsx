@@ -5,16 +5,26 @@ import styled from 'styled-components';
 
 const PizzaGridStyles = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-auto-rows: auto auto 500px;
+  grid-template-columns: repeat(auto-fill, minmax(var(--min-width), 1fr));
+  grid-auto-rows: auto auto var(--max-height);
   gap: 4rem;
+
+  @media (min-width: 601px) {
+    --min-width: 350px;
+    --max-height: 500px;
+  }
+
+  @media (max-width: 600px) {
+    --min-width: 250px;
+    --max-height: 300px;
+  }
 `;
 
 const PizzaStyles = styled.div`
   display: grid;
 
   @supports not (grid-template-rows: subgrid) {
-    --rows: auto 1fr 500px;
+    --rows: auto 1fr var(--max-height);
   }
 
   grid-template-rows: var(--rows, subgrid);
@@ -24,6 +34,14 @@ const PizzaStyles = styled.div`
   h1,
   p {
     margin: 0;
+  }
+
+  @media (min-width: 601px) {
+    --max-height: 500px;
+  }
+
+  @media (max-width: 600px) {
+    --max-height: 300px;
   }
 `;
 
