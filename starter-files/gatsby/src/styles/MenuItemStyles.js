@@ -44,13 +44,25 @@ const MenuItemStyles = styled.div`
 
   .remove {
     background: none;
-    color: var(--red);
-    font-size: 3rem;
+    color: var(--remove-color);
     position: absolute;
     top: 0;
     right: 0;
     box-shadow: none;
-    line-height: 1rem;
+    padding: 1rem;
+
+    @media (min-width: 601px) {
+      --remove-color: var(--red);
+      font-size: 3rem;
+      line-height: 1rem;
+    }
+
+    @media (max-width: 600px) {
+      --remove-color: white;
+      z-index: 1;
+      font-size: 5rem;
+      line-height: 2rem;
+    }
   }
 `;
 
