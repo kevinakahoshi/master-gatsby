@@ -52,7 +52,8 @@ const usePizza = ({ pizzas, values }) => {
     if (response.status > 399 && response.status < 600) {
       setError(text.message);
     } else {
-      setMessage('Success!  Come on down for your pizza;');
+      setOrder([]);
+      setMessage('Success!  Come on down for your pizza.');
     }
   };
 
