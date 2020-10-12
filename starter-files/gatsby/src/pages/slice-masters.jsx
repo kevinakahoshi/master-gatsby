@@ -8,7 +8,7 @@ import SEO from '../components/SEO';
 const SliceMasterGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(var(--min-width), 1fr));
-  grid-gap: 4rem;
+  grid-gap: 2rem;
 
   @media (min-width: 601px) {
     --min-width: 350px;
